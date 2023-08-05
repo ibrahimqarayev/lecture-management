@@ -2,28 +2,49 @@ package az.mycompany.lecturemanagement.exception;
 
 import java.time.LocalDateTime;
 
-public class ErrorDetails {
+public class ErrorResponse {
 
-    private int status;
+    private LocalDateTime timestamp;
+    private String status;
+    private int httpStatusCode;
     private String message;
     private String details;
     private String path;
-    private LocalDateTime timestamp;
 
-    public ErrorDetails(int status, String message, String details, String path, LocalDateTime timestamp) {
+    public ErrorResponse() {
+    }
+
+    public ErrorResponse(String status, int httpStatusCode, String message, String details, String path) {
+        this.timestamp = LocalDateTime.now();
         this.status = status;
+        this.httpStatusCode = httpStatusCode;
         this.message = message;
         this.details = details;
         this.path = path;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getHttpStatusCode() {
+        return httpStatusCode;
+    }
+
+    public void setHttpStatusCode(int httpStatusCode) {
+        this.httpStatusCode = httpStatusCode;
     }
 
     public String getMessage() {
@@ -48,13 +69,5 @@ public class ErrorDetails {
 
     public void setPath(String path) {
         this.path = path;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
     }
 }
