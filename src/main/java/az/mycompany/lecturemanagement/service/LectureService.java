@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LectureService {
@@ -46,6 +47,19 @@ public class LectureService {
         int numberOfLectures = lectures.size();
         logger.info("Retrieved {} lectures from the database.", numberOfLectures);
         return lectures;
+    }
+
+    public Lecture findById(int id) {
+        Optional<Lecture> optionalLecture = lectureRepository.findById(id);
+        if (optionalLecture.isPresent()) {
+            Lecture lecture = optionalLecture.get();
+            logger.info("Lecture with id {} has been retrieved.", id);
+            return lecture;
+        } else {
+            String errorMessage = "Lecture not found with id: " + id;
+            logger.error(errorMessage);
+            throw new ResourceNotFoundException(errorMessage);
+        }
     }
 
     public boolean existsById(int id) {
