@@ -26,4 +26,45 @@ public class Lecture {
             inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")})
     private List<User> students;
 
+    public Lecture() {
+    }
+
+    public Lecture(Integer id, String name, User teacher, List<User> students) {
+        this.id = id;
+        this.name = name;
+        this.teacher = teacher;
+        this.students = students;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
+    }
+
+    public List<User> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<User> students) {
+        this.students = students;
+    }
 }
