@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class LectureService {
     private final LectureRepository lectureRepository;
@@ -25,7 +27,7 @@ public class LectureService {
             logger.info("Saving lecture");
             return lectureRepository.save(lecture);
         }
-        throw new DuplicateResourceException("User already exist");
+        throw new DuplicateResourceException("Lecture already exist");
     }
 
     @Transactional
@@ -37,6 +39,13 @@ public class LectureService {
         }
         logger.info("Lecture with id {} is successfully deleted.", id);
         lectureRepository.deleteById(id);
+    }
+
+    public List<Lecture> findAll() {
+        List<Lecture> lectures = lectureRepository.findAll();
+        int numberOfLectures = lectures.size();
+        logger.info("Retrieved {} lectures from the database.", numberOfLectures);
+        return lectures;
     }
 
     public boolean existsById(int id) {
