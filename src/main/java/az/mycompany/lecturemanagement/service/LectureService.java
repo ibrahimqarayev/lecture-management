@@ -1,11 +1,14 @@
 package az.mycompany.lecturemanagement.service;
 
 import az.mycompany.lecturemanagement.entity.Lecture;
+import az.mycompany.lecturemanagement.entity.User;
 import az.mycompany.lecturemanagement.exception.DuplicateResourceException;
 import az.mycompany.lecturemanagement.exception.ResourceNotFoundException;
 import az.mycompany.lecturemanagement.repository.LectureRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +50,13 @@ public class LectureService {
         int numberOfLectures = lectures.size();
         logger.info("Retrieved {} lectures from the database.", numberOfLectures);
         return lectures;
+    }
+
+    public Page<Lecture> findAll(Pageable pageable) {
+        Page<Lecture> lecturePage = lectureRepository.findAll(pageable);
+        long numberOfUsers = lecturePage.getTotalElements();
+        logger.info("Retrieved {} lectures with paging from the database.", numberOfUsers);
+        return lecturePage;
     }
 
     public Lecture findById(int id) {
