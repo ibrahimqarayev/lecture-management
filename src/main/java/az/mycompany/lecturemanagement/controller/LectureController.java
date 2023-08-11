@@ -1,16 +1,10 @@
 package az.mycompany.lecturemanagement.controller;
 
 import az.mycompany.lecturemanagement.dto.request.LectureDto;
-import az.mycompany.lecturemanagement.dto.request.UserDto;
 import az.mycompany.lecturemanagement.dto.response.ApiResponse;
 import az.mycompany.lecturemanagement.dto.response.PageInfoWithContent;
 import az.mycompany.lecturemanagement.entity.Lecture;
-import az.mycompany.lecturemanagement.entity.User;
 import az.mycompany.lecturemanagement.service.LectureService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
