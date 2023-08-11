@@ -1,6 +1,8 @@
 package az.mycompany.lecturemanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -12,9 +14,11 @@ public class Lecture {
     @Column(name = "lecture_id")
     private Integer id;
 
+    @NotEmpty(message = "Name can not be empty")
     @Column(name = "name")
     private String name;
 
+    @NotNull(message = "Teacher can not be null")
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private User teacher;
