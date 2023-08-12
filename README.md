@@ -1,4 +1,4 @@
 # lecture-management
-# Fullstack demo
-## Spring Boot
-## ReactJS
+## First Fullstack CRUD Application
+### Spring Boot
+### ReactJS
